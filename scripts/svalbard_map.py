@@ -24,17 +24,19 @@ from bokeh.tile_providers import CARTODBPOSITRON, get_provider
 
 def svalbard_map_tab(MTO):
 
-STATIONS = ['Zeppelin','Hornsund']
 
-stations = ['ZEPPELIN','HORNSUND','PYRAMIDEN','KONGSØYA', 'KARL_XII-ØYA', 'KVITØYA' ,'SVEAGRUVA']
-coordinates = [[15.550000,77.000000],[11.8867,78.9072],[16.360300, 78.655700],[28.892000, 78.910800], [25.008000, 80.653000],
-               [31.464300, 80.105800],[16.720000, 77.895300]]
-    x = [19.10797119140625, 15.550000, 11.8867]#, -96.79, -97.33, -95.36, -98.49]
-    y = [74.51878916336756, 77.000000, 78.9072]#, 32.77, 32.75, 29.76, 29.42]
+
+    stations = ['ZEPPELIN','HORNSUND','PYRAMIDEN','KONGSØYA', 'KARL_XII-ØYA', 'KVITØYA' ,'SVEAGRUVA']
+    coordinates = [[15.550000,77.000000],[11.8867,78.9072],[16.360300, 78.655700],[28.892000, 78.910800], [25.008000, 80.653000],
+        [31.464300, 80.105800],[16.720000, 77.895300]]
+    x = [item[0] for item in coordinates]
+    y = [item[1] for item in coordinates]
+    #x = [19.10797119140625, 15.550000, 11.8867]#, -96.79, -97.33, -95.36, -98.49]
+    #y = [74.51878916336756, 77.000000, 78.9072]#, 32.77, 32.75, 29.76, 29.42]
     # Set up widgets
-    station = 'ZEPPELIN'
+    #station = 'ZEPPELIN'
     map_para = Paragraph(text= '', width=100, height=100)
-    station_select = Select(value=station, title='Stations', options=stations)
+    station_select = Select(value=stations[0], title='Stations', options=stations)
 
 
     # Set up callbacks
@@ -68,9 +70,6 @@ coordinates = [[15.550000,77.000000],[11.8867,78.9072],[16.360300, 78.655700],[2
 
 
     # Adding Stations to map
-
-    x = [19.10797119140625, 15.550000, 11.8867]#, -96.79, -97.33, -95.36, -98.49]
-    y = [74.51878916336756, 77.000000, 78.9072]#, 32.77, 32.75, 29.76, 29.42]
 
     # The scatter markers
     mapSvalbard.circle(x, y, size=8, color='red', alpha=1)
