@@ -67,7 +67,9 @@ def svalbard_map_tab(MTO):
     # reading the data from the file
 
     # Set up svalbard Map
-    with open('svalbard.json') as f:
+    #dir_path = os.path.dirname(os.path.realpath(__file__))
+    path = r'C:/Users/MATEO/Documents/infoTeo/Personal_Projects/Hack_the_Artic/stable_version/Svalboard/scripts/'
+    with open(path+'svalbard.json') as f:
         svalbard = f.read()
         data = json.loads(svalbard)
         geo_source = GeoJSONDataSource(geojson=svalbard)

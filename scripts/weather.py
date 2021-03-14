@@ -57,6 +57,7 @@ def weather_tab(MTO_data):
         #print(y_title+' !!!!!!!!!!!!!!!!!!!!!!!!!! ')
         #xs = list(df['Unnamed: 0'].values.index)
         #xs = list(pd.to_datetime(df['Unnamed: 0']).values)
+        print(df1.columns)
         ys1 = list(df1[y_title1].values)
         ys2 = list(df2[y_title2].values)
         xs = xData
@@ -114,7 +115,9 @@ def weather_tab(MTO_data):
 
     # Read datapa
     #df = pd.read_csv(r'../data/carbon_data.csv')
-    path = 'C:/Users/MATEO/Documents/infoTeo/Personal_Projects/Hack_the_Artic/svalboard/data/'+dataSelect.value
+    #dir_path = os.path.dirname(os.path.realpath(__file__))
+    path = r'C:/Users/MATEO/Documents/infoTeo/Personal_Projects/Hack_the_Artic/stable_version/Svalboard/data/'
+    path = path+dataSelect.value
     df1 = pd.read_csv(path)
     print('!!!!!!!!!!!!!!!!!!!!!!!!!! '+'WORKED'+' !!!!!!!!!!!!!!!!!!!!!!!!!! ')
     yLabels1 = df1.columns.values
@@ -163,5 +166,5 @@ def weather_tab(MTO_data):
     layout = row(inputs, plot, width=2000)
 
     #layout = row(inputs, plot, width=800)
-    tab = Panel(child = layout, title = 'Weather')
+    tab = Panel(child = layout, title = 'Climate Data')
     return tab

@@ -30,10 +30,10 @@ icosMTO_df =1 #pd.read_csv(r"data\ICOS_ATC_L2_L2-2020.1_ZEP_15.0_CTS.MTO", heade
 
 # Create each of the tabs
 tab1 = weather_tab(icosMTO_df)
-tab2 = pollutans_tab(icosCO_df,icosCO2_df,icosCH4_df)
+#tab2 = pollutans_tab(icosCO_df,icosCO2_df,icosCH4_df)
 tab3 = svalbard_map_tab(icosMTO_df)
 
 # Put all tabs in the application
 curdoc().theme = 'dark_minimal'
-tabs = Tabs(tabs = [tab1, tab2, tab3])
+tabs = Tabs(tabs = [tab3, tab1])
 curdoc().add_root(tabs)
