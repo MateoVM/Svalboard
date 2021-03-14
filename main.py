@@ -34,5 +34,6 @@ tab2 = pollutans_tab(icosCO_df,icosCO2_df,icosCH4_df)
 tab3 = svalbard_map_tab(icosMTO_df)
 
 # Put all tabs in the application
+curdoc().theme = 'dark_minimal'
 tabs = Tabs(tabs = [tab1, tab2, tab3])
 curdoc().add_root(tabs)

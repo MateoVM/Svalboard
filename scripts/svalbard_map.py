@@ -26,11 +26,25 @@ def svalbard_map_tab(MTO):
 
 
 
-    stations = ['ZEPPELIN','HORNSUND','PYRAMIDEN','KONGSØYA', 'KARL_XII-ØYA', 'KVITØYA' ,'SVEAGRUVA']
+
+
+    stations = ['ZEPPELIN','HORNSUND','PYRAMIDEN','KONGSØYA', 'KARL_XII-ØYA',
+     'KVITØYA' ,'SVEAGRUVA']
     coordinates = [[15.550000,77.000000],[11.8867,78.9072],[16.360300, 78.655700],[28.892000, 78.910800], [25.008000, 80.653000],
         [31.464300, 80.105800],[16.720000, 77.895300]]
     x = [item[0] for item in coordinates]
     y = [item[1] for item in coordinates]
+    source = ColumnDataSource(data=dict(
+        x = [item[0] for item in coordinates],
+        y = [item[1] for item in coordinates],
+        stations = ['ZEPPELIN','HORNSUND','PYRAMIDEN','KONGSØYA', 'KARL_XII-ØYA',
+         'KVITØYA' ,'SVEAGRUVA'],
+    ))
+    TOOLTIPS = [
+        ("index", "$index"),
+        ("(x,y)", "($x, $y)"),
+        ("stations", "@stations"),
+    ]
     #x = [19.10797119140625, 15.550000, 11.8867]#, -96.79, -97.33, -95.36, -98.49]
     #y = [74.51878916336756, 77.000000, 78.9072]#, 32.77, 32.75, 29.76, 29.42]
     # Set up widgets
@@ -60,6 +74,8 @@ def svalbard_map_tab(MTO):
 
     mapSvalbard = figure(title='Svalbard', x_axis_location=None,
                             y_axis_location=None, plot_height=400,
+                            tools="crosshair,pan,reset,save,wheel_zoom,hover,box_zoom",
+                            tooltips=TOOLTIPS,
                             plot_width=400)
     mapSvalbard.outline_line_color = None
     mapSvalbard.xgrid.grid_line_color = None
@@ -72,7 +88,7 @@ def svalbard_map_tab(MTO):
     # Adding Stations to map
 
     # The scatter markers
-    mapSvalbard.circle(x, y, size=8, color='red', alpha=1)
+    mapSvalbard.circle('x', 'y', size=8, color='red', alpha=1, source=source)
     mapSvalbard.select(name="mycircle")
     hover = mapSvalbard.select_one(HoverTool)
     #hover.point_policy = "follow_mouse"
